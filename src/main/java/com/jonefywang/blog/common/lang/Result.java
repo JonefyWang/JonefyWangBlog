@@ -19,7 +19,7 @@ public class Result implements Serializable {
     private Object data;
 
     /**
-     * 成功信息结果集一次封装
+     * 成功信息结果集一次 封装
      * @param data
      * @return
      */
