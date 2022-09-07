@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Version 1.0
  */
 @RestController
+@RequestMapping("account")
 public class AccountController {
     @Autowired
     private JwtUtils jwtUtils;
@@ -45,7 +46,7 @@ public class AccountController {
         }
         String jwt = jwtUtils.generateToken(user.getId());
         response.setHeader("Authorization", jwt);
-        response.setHeader("Access-Control-Expose-Headers", "Authorization");
+        response.setHeader("Access-control-Expose-Headers", "Authorization");
         // 用户可以另一个接口
         return Result.success(MapUtil.builder()
                 .put("id", user.getId())

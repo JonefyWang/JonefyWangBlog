@@ -20,8 +20,4 @@ public class AccountProfile implements Serializable {
     private String avatar;
 
     private String email;
-
-    private LocalDateTime created;
-
-    private LocalDateTime lastLogin;
 }

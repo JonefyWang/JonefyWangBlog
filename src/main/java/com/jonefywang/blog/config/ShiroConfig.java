@@ -66,7 +66,7 @@ public class ShiroConfig {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
         Map<String, String> filterMap = new LinkedHashMap<>();
         // 主要通过注解方式校验权限
-        filterMap.put("/**", "authc");
+        filterMap.put("/**", "jwt");
         chainDefinition.addPathDefinitions(filterMap);
         return chainDefinition;
     }

@@ -23,7 +23,7 @@ import javax.jws.soap.SOAPBinding;
  * @Version 1.0
  */
 @Component
-public class AccountRealm extends AuthorizingRealm {
+public class  AccountRealm extends AuthorizingRealm {
 
     @Autowired
     private JwtUtils jwtUtils;
