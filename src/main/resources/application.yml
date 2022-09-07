@@ -1,18 +1,25 @@
 # DataSource Config
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/JonefyWangBlog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jonefywangblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
 server:
   port: 8081
+  #shiro-redis配置
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 192.168.102.210:6379
+    password: uj2$r6vX@%vNi%fm
 jonefywang:
   jwt:
-    # 加密秘钥
+    #加密秘钥
     secret: f4e2e52034348f86b67cde581c0f9eb5
-    # token有效时长，7天，单位秒
-    expire: 604800
-    header: token
+    #token有效期时长，7天，单位秒
+    expire: 1
+    header: Authorization
+
