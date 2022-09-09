@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
  * @since 2022-08-23
  */
 @RestController
-@RequestMapping("/blog")
+@RequestMapping("/blogs")
 public class BlogController {
 
     @Autowired
