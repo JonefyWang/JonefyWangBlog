@@ -57,7 +57,7 @@ public class JwtFilter extends AuthenticatingFilter {
                 throw new ExpiredCredentialsException("token已失效，请重新登录！");
             }
         }
-        return false;
+        return executeLogin(servletRequest,servletResponse);
     }
 
     @Override

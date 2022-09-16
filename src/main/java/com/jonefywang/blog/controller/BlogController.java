@@ -37,7 +37,7 @@ public class BlogController {
     private BlogService blogService;
 
     @GetMapping("/listBlogs")
-    public Result listBlogs(@RequestParam(defaultValue = "1") Integer currentPage){
+    public Result listBlogs(@RequestParam Integer currentPage){
         Page page = new Page(currentPage,5);
         IPage pageDate = blogService.page(page,new QueryWrapper<Blog>().orderByDesc("created"));
 
@@ -57,7 +57,7 @@ public class BlogController {
         if (StringUtils.isNotEmpty(blog.getId())){
             currentblog = blogService.getById(blog.getId());
             //判断当前修改用户
-            Assert.isTrue(currentblog.getUserId() == ShrioUtils.getProfile().getId(),"没有权限修改该文章！");
+            Assert.isTrue(currentblog.getUserId().equals(ShrioUtils.getProfile().getId()),"没有权限修改该文章！");
         }else{
 
             currentblog = new Blog();

@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("account")
 public class AccountController {
     @Autowired
     private JwtUtils jwtUtils;
@@ -61,7 +60,7 @@ public class AccountController {
      * 退出
      * @return
      */
-    @GetMapping("/logout")
+    @RequestMapping("/logout")
     @RequiresAuthentication
     public Result logout() {
         SecurityUtils.getSubject().logout();
