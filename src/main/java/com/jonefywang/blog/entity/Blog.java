@@ -48,5 +48,17 @@ public class Blog implements Serializable {
 
     private Integer status;
 
+    private String createUser;
+
+    private LocalDateTime createDate;
+
+    private String updateUser;
+
+    private LocalDateTime updateTime;
+
+    private boolean delFlag;
+
+    private String remark;
+
 
 }

@@ -45,9 +45,10 @@ public class User implements Serializable {
 
     private Integer status;
 
-    private LocalDateTime created;
+    private LocalDateTime createTime;
 
     private LocalDateTime lastLogin;
 
+    private LocalDateTime updateTime;
 
 }
