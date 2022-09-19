@@ -1,5 +1,7 @@
 package com.jonefywang.blog.service;
 
+import com.jonefywang.blog.common.dto.BlogDto;
+import com.jonefywang.blog.common.dto.TagDto;
 import com.jonefywang.blog.entity.Tag;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +14,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-16
  */
 public interface TagService extends IService<Tag> {
+
+
+
+    boolean saveOrUpdateTag(TagDto tagDto);
 
 }

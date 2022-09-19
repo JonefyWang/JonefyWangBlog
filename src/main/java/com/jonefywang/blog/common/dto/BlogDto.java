@@ -1,36 +1,25 @@
-package com.jonefywang.blog.entity;
+package com.jonefywang.blog.common.dto;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- * 
- * </p>
+ * Created with IntelliJ IDEA.
  *
- * @author JonefyWAng
- * @since 2022-08-23
+ * @Author: wangyuan
+ * @Date: 2022/09/16/11:27
+ * @Description:
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("m_blog")
-public class Blog implements Serializable {
+public class BlogDto {
 
-    private static final long serialVersionUID = 1L;
-
-    @TableId(value = "id", type = IdType.UUID)
-    private String id;
+    private String blogId;
 
     private String userId;
 
@@ -52,11 +41,9 @@ public class Blog implements Serializable {
 
     private String updateUser;
 
-    private LocalDateTime updateDate;
+    private LocalDateTime updateTime;
 
-    private String delFlag;
+    private boolean delFlag;
 
-    private String remark;
-
-
+    private List<String> tagIds;
 }

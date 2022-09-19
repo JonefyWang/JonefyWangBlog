@@ -31,6 +31,8 @@ public class Tag implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
+    private String userId;
+
     private String tagName;
 
     private String createUser;
@@ -41,5 +43,8 @@ public class Tag implements Serializable {
 
     private LocalDateTime updateDate;
 
+    private String delFlag;
+
+    private String remark;
 
 }

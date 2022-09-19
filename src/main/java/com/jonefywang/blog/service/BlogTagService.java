@@ -1,5 +1,6 @@
 package com.jonefywang.blog.service;
 
+import com.jonefywang.blog.common.dto.BlogDto;
 import com.jonefywang.blog.entity.BlogTag;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface BlogTagService extends IService<BlogTag> {
 
+    boolean saveTagBlog(BlogDto blogDto);
 }
