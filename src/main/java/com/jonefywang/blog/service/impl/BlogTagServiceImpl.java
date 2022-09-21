@@ -1,6 +1,7 @@
 package com.jonefywang.blog.service.impl;
 
 import com.jonefywang.blog.common.dto.BlogDto;
+import com.jonefywang.blog.common.dto.TagDto;
 import com.jonefywang.blog.entity.BlogTag;
 import com.jonefywang.blog.entity.Tag;
 import com.jonefywang.blog.entity.User;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,8 +37,12 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagMapper, BlogTag> impl
     public boolean saveTagBlog(BlogDto blogDto) {
         BlogTag blogTag = null;
         SnowFlake snowFlake = null;
-        List<String> tagIds = blogDto.getTagIds();
+        List<TagDto> tagDtos = blogDto.getTags();
         List<String> collect = this.list(null).stream().map(BlogTag::getTagId).collect(Collectors.toList());
+        List<String> tagIds = new ArrayList<>();
+        for (TagDto tagDto : tagDtos){
+            tagIds.add(tagDto.getTagId());
+        }
         List<String> filters = collect.stream().filter(tagIds::contains).collect(Collectors.toList());
         for (String filter : filters){
             blogTag.setId(String.valueOf(snowFlake.nextId()));

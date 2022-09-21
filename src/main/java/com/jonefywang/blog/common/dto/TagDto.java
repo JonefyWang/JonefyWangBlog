@@ -14,11 +14,9 @@ import java.util.List;
 @Data
 public class TagDto {
 
-    private String id;
+    private String tagId;
 
     private String userId;
 
-    private List<String> tagName;
-
-    private String createUser;
+    private String tagName;
 }

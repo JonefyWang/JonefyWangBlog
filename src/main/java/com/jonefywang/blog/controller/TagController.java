@@ -55,8 +55,8 @@ public class TagController {
     @PostMapping("/edit")
     public Result editTags(@Validated @RequestBody TagDto tagDto){
         Tag currentTag = null;
-        if (StringUtils.isNotEmpty(tagDto.getId())){
-            currentTag = tagService.getById(tagDto.getId());
+        if (StringUtils.isNotEmpty(tagDto.getTagId())){
+            currentTag = tagService.getById(tagDto.getTagId());
             //判断当前修改用户
             Assert.isTrue(currentTag.getUserId().equals(ShrioUtils.getProfile().getId()),"没有权限修改该文章！");
         }else {
@@ -65,7 +65,7 @@ public class TagController {
         return Result.success(currentTag);
     }
 
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public Result deleteTags(@PathVariable(name = "id") String tagId){
         if (StringUtils.isNotEmpty(tagId)){
             Tag currentTag = tagService.getById(tagId);

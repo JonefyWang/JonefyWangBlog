@@ -47,7 +47,7 @@ public class Blog implements Serializable {
 
     private String createUser;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createDate;
 
     private String updateUser;

@@ -3,7 +3,6 @@ package com.jonefywang.blog.controller;
 
 
 import cn.hutool.core.lang.Assert;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -50,8 +49,7 @@ public class BlogController {
 
     @GetMapping("/listBlogs")
     public Result listBlogs(@RequestParam Integer currentPage){
-        Page page = new Page(currentPage,5);
-        IPage pageDate = blogService.page(page,new QueryWrapper<Blog>().eq("DEL_FLAG","1").orderByDesc("CREATE_DATE"));
+        IPage pageDate = blogService.listBlogs(currentPage);
 
         return Result.success(pageDate);
     }

@@ -2,4 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jonefywang.blog.mapper.BlogMapper">
 
+    <resultMap id="BaseResultMap" type="com.jonefywang.blog.entity.Blog">
+        <id column="ID" property="id"/>
+        <result column="REMARK" property="remark" />
+        <result column="DEL_FLAG" property="delFlag" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="UPDATE_USER" property="updateUser" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="USER_ID" property="userId"/>
+        <result column="TITLE" property="title"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="CONTENT" property="content"/>
+    </resultMap>
+
+    <resultMap id="BlogDto" type="com.jonefywang.blog.common.dto.BlogDto" extends="BaseResultMap">
+        <id column="blogId" property="blogId"/>
+        <result column="DEL_FLAG" property="delFlag" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="UPDATE_USER" property="updateUser" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="TITLE" property="title"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="CONTENT" property="content"/>
+        <collection property="tags" select="getTagByBlog" column="{id=blogId}" ofType="com.jonefywang.blog.common.dto.TagDto"/>
+    </resultMap>
+
+
+    <resultMap id="tagDto" type="com.jonefywang.blog.common.dto.TagDto" >
+        <result column="tagId" property="tagId"/>
+        <result column="user_id" property="userId"/>
+        <result column="tag_name" property="tagName"/>
+    </resultMap>
+
+    <select id="listBlogs" resultMap="BlogDto">
+        SELECT
+            b.id as blogId,
+            b.user_id,
+            b.title,
+            b.description,
+            b.content,
+            b.del_flag,
+            b.create_user,
+            b.create_date,
+            t.id as tagId,
+            t.tag_name
+        FROM
+            m_blog AS b
+                LEFT JOIN m_blog_tag AS bt ON b.id = bt.blog_id
+                LEFT JOIN m_tag as t on bt.tag_id = t.id COLLATE utf8mb4_unicode_ci
+        GROUP BY b.id
+        ORDER BY b.create_date
+    </select>
+
+    <select id="getTagByBlog" resultMap="tagDto">
+        SELECT t.*,t.id as tagId FROM m_tag t left join m_blog_tag bt on t.id = bt.tag_id COLLATE utf8mb4_unicode_ci where bt.blog_id=#{id}
+    </select>
+
 </mapper>

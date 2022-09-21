@@ -2,6 +2,8 @@ package com.jonefywang.blog.service.impl;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jonefywang.blog.common.dto.BlogDto;
 import com.jonefywang.blog.entity.Blog;
 import com.jonefywang.blog.entity.User;
@@ -30,6 +32,16 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BlogMapper blogMapper;
+
+    @Override
+    public IPage listBlogs(Integer currentPage) {
+        IPage<BlogDto> page = blogMapper.listBlogs(new Page(currentPage,5));
+
+        return page;
+    }
 
     @Override
     public boolean saveOrUpdateBlog(BlogDto blogDto) {
@@ -61,6 +73,8 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
         boolean flag = save(temp);
         return flag;
     }
+
+
 
     /**
      * 根据UserId获取userName

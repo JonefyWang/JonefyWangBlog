@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,28 +40,25 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
     public boolean saveOrUpdateTag(TagDto tagDto) {
         Tag temp = null;
         SnowFlake snowFlake = null;
-        if (StringUtils.isEmpty(tagDto.getId())){
+        if (StringUtils.isEmpty(tagDto.getTagId())){
             //如果id为空
             temp =  new Tag();
-            List<String> tagNames = tagDto.getTagName();
-            for (String tagName : tagNames){
-                temp.setId(String.valueOf(snowFlake.nextId()));
-                temp.setTagName(tagName);
-                temp.setUserId(tagDto.getUserId());
-                temp.setCreateUser(this.getUserName(tagDto.getUserId()));
-                temp.setCreateDate(LocalDateTime.now());
-            }
+
+            temp.setId(String.valueOf(snowFlake.nextId()));
+            temp.setTagName(tagDto.getTagName());
+            temp.setUserId(tagDto.getUserId());
+            temp.setCreateUser(this.getUserName(tagDto.getUserId()));
+            temp.setCreateDate(LocalDateTime.now());
+
         } else {
-            Tag tag = this.getById(tagDto.getId());
-            List<String> tagNames = tagDto.getTagName();
-            for (String tagName: tagNames) {
-                if (tag.getTagName().equals(tagName)){
-                    continue;
-                } else {
+            Tag tag = this.getById(tagDto.getTagId());
+            String tagName = tagDto.getTagName();
+            if (tag.getTagName().equals(tagName)){
+
+            } else {
                     temp.setTagName(tagName);
                     temp.setUpdateUser(this.getUserName(tagDto.getUserId()));
                     temp.setUpdateDate(LocalDateTime.now());
-                }
             }
         }
         BeanUtil.copyProperties(tagDto,temp,"id","userId");

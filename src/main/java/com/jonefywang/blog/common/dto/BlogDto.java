@@ -3,6 +3,7 @@ package com.jonefywang.blog.common.dto;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jonefywang.blog.entity.Tag;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -41,9 +42,9 @@ public class BlogDto {
 
     private String updateUser;
 
-    private LocalDateTime updateTime;
+    private LocalDateTime updateDate;
 
     private boolean delFlag;
 
-    private List<String> tagIds;
+    private List<TagDto> tags;
 }

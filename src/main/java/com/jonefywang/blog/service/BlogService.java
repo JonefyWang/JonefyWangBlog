@@ -1,5 +1,6 @@
 package com.jonefywang.blog.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.jonefywang.blog.common.dto.BlogDto;
 import com.jonefywang.blog.entity.Blog;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -21,4 +22,6 @@ public interface BlogService extends IService<Blog> {
      * @return
      */
     boolean saveOrUpdateBlog(BlogDto blogDto);
+
+    IPage listBlogs(Integer currentPage);
 }
